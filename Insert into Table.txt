@@ -1,0 +1,10 @@
+ INSERT INTO students (Roll_no,First_name,Second_name)VALUES ('20','RAJA','EDAGOTTU');
+Query OK, 1 row affected (0.29 sec)
+
+mysql> SELECT * FROM students;
++---------+------------+-------------+
+| Roll_no | First_name | Second_name |
++---------+------------+-------------+
+|      20 | RAJA       | EDAGOTTU    |
++---------+------------+-------------+
+1 row in set (0.02 sec)

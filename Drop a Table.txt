@@ -1,0 +1,2 @@
+Drop table Bio_data;
+Query OK, 0 rows affected (1.10 sec)

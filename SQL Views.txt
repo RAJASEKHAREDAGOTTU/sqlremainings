@@ -1,0 +1,200 @@
+mysql> create table Emp(
+    -> Empno int,
+    -> Ename varchar(20),
+    -> sal int,
+    -> Job varchar(20
+    -> ));
+Query OK, 0 rows affected (1.87 sec)
+
+mysql> select * from Emp;
+Empty set (0.17 sec)
+
+mysql> desc Emp;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Empno | int         | YES  |     | NULL    |       |
+| Ename | varchar(20) | YES  |     | NULL    |       |
+| sal   | int         | YES  |     | NULL    |       |
+| Job   | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.13 sec)
+
+mysql> insert into Emp(Empno,Ename,sal,Job)values('1001','sekhar','30000','S.E');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into Emp(Empno,Ename,sal,Job)values('1002','jan','30000','S.E');
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into Emp(Empno,Ename,sal,Job)values('1002','raj','30400','S.E');
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into Emp(Empno,Ename,sal,Job)values('1003','Sam','36000','P.P');
+Query OK, 1 row affected (0.23 sec)
+
+mysql> select * from Emp;
++-------+-------+-------+------+
+| Empno | Ename | sal   | Job  |
++-------+-------+-------+------+
+|  1001 | sekhar| 30000 | S.E  |
+|  1002 | jan   | 30000 | S.E  |
+|  1002 | Raj   | 30400 | S.E  |
+|  1003 | Sam  | 36000 | P.P  |
++-------+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> delete from Emp where Empno='1002';
+Query OK, 2 rows affected (0.41 sec)
+
+mysql> select * from Emp;
++-------+-------+-------+------+
+| Empno | Ename | sal   | Job  |
++-------+-------+-------+------+
+|  1001 | sekhar| 30000 | S.E  |
+|  1003 | Sam   | 36000 | P.P  |
++-------+-------+-------+------+
+2 rows in set (0.01 sec)
+
+mysql> insert into Emp(Empno,Ename,sal,Job)values('1002','Radha','25000','P.A');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from Emp;
++-------+-------+-------+------+
+| Empno | Ename | sal   | Job  |
++-------+-------+-------+------+
+|  1001 | sekhar| 30000 | S.E  |
+|  1003 | Sam   | 36000 | P.P  |
+|  1002 | Radha | 25000 | P.A  |
++-------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> create view E1 as select * from Emp;
+Query OK, 0 rows affected (0.62 sec)
+
+mysql> select * from E1;
++-------+-------+-------+------+
+| Empno | Ename | sal   | Job  |
++-------+-------+-------+------+
+|  1001 | sekhar| 30000 | S.E  |
+|  1003 | Sam   | 36000 | P.P  |
+|  1002 | Radha | 25000 | P.A  |
++-------+-------+-------+------+
+3 rows in set (0.14 sec)
+
+mysql> select * from Emp;
++-------+-------+-------+------+
+| Empno | Ename | sal   | Job  |
++-------+-------+-------+------+
+|  1001 | sekhar| 30000 | S.E  |
+|  1003 | Sam   | 36000 | P.P  |
+|  1002 | Radha | 25000 | P.A  |
++-------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into E1 values('1004','Rogue','28000','Principal');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> select * from E1;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1002 | Radha | 25000 | P.A       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Emp;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1002 | Radha | 25000 | P.A       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select Ename,sal from E1;
++-------+-------+
+| Ename | sal   |
++-------+-------+
+| Noor  | 30000 |
+| Syam  | 36000 |
+| Radha | 25000 |
+| Rogue | 28000 |
++-------+-------+
+4 rows in set (0.00 sec)
+mysql> select * from E1 where sal > 15000;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1002 | Radha | 25000 | P.A       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from E1 where sal > 25000;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from E1 where sal > 30000;
++-------+-------+-------+------+
+| Empno | Ename | sal   | Job  |
++-------+-------+-------+------+
+|  1003 | Sam   | 36000 | P.P  |
++-------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> delete from E1 where sal = '20000';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from E1;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1002 | Radha | 25000 | P.A       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from E1 where sal='25000';
+Query OK, 1 row affected (0.19 sec)
+
+mysql> select * from E1;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+3 rows in set (0.10 sec)
+
+mysql> Drop view E1;
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> select * from Emp;
++-------+-------+-------+-----------+
+| Empno | Ename | sal   | Job       |
++-------+-------+-------+-----------+
+|  1001 | sekhar| 30000 | S.E       |
+|  1003 | Sam   | 36000 | P.P       |
+|  1004 | Rogue | 28000 | Principal |
++-------+-------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from E1;
+ERROR 1146 (42S02): Table 'rajsekhar.e1' doesn't exist
